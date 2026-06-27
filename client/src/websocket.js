@@ -9,9 +9,17 @@ class WebSocketClient {
 
   connect() {
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    const host = window.location.hostname;
-    const port = window.location.port;
-    const wsUrl = `${protocol}//${host}:${port || (window.location.protocol === 'https:' ? '' : '3000')}`;
+    const host = window.location.host;
+    const isDev = import.meta.env && import.meta.env.DEV;
+    
+    let wsUrl;
+    if (isDev) {
+      wsUrl = `${protocol}//${host}/ws`;
+    } else {
+      wsUrl = `${protocol}//${host}`;
+    }
+    
+    console.log('Connecting to WebSocket:', wsUrl);
     
     this.ws = new WebSocket(wsUrl);
 
