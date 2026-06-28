@@ -1,0 +1,3 @@
+[submodule "LapisDB"]
+	path = LapisDB
+	url = https://github.com/fs5vcx/LapisDB.git
