@@ -27,12 +27,8 @@
       "players": []
     }
   ],
-  "pool": [
-    "member_u_1783389078405"
-  ],
-  "checkin": [
-    "member_u_1783389078405"
-  ],
+  "pool": [],
+  "checkin": [],
   "pickOrder": [],
   "currentPick": 0
 }

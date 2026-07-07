@@ -30,5 +30,13 @@
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=testuser",
     "isAdmin": false,
     "memberId": "member_u_1783389078405"
+  },
+  "27395580845976f96507932951753d7c6a78be2fa1ca04935b45baae390b93bb": {
+    "id": "u_1783389078405",
+    "username": "testuser",
+    "nickname": "测试用户",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=testuser",
+    "isAdmin": false,
+    "memberId": "member_u_1783389078405"
   }
 }
