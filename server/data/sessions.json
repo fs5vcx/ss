@@ -1,0 +1,42 @@
+{
+  "d66aa4de82ab78e432eba2be1fcf953f13bfda87bec58bfa281f498d2f171d0b": {
+    "id": "u_1783389078405",
+    "username": "testuser",
+    "nickname": "测试用户",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=testuser",
+    "isAdmin": false,
+    "memberId": "member_u_1783389078405"
+  },
+  "2230bd5ec8922c72bad86c252f4bd98f45bbad13d28eb816a600885b9f9cbc75": {
+    "id": "u_1783389078405",
+    "username": "testuser",
+    "nickname": "测试用户",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=testuser",
+    "isAdmin": false,
+    "memberId": "member_u_1783389078405"
+  },
+  "0bed6ad233f19b86a4549c5b9bd508e1f2937f0b4788d107c64c9b793b91f8f7": {
+    "id": "u_1783389119604",
+    "username": "admin",
+    "nickname": "管理员",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=admin",
+    "isAdmin": true,
+    "memberId": "member_u_1783389119604"
+  },
+  "ab9d3bf95e171417c520f2bb8a364dc2c043b55bc843873bcb0f50e00b857dc1": {
+    "id": "u_1783389078405",
+    "username": "testuser",
+    "nickname": "测试用户",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=testuser",
+    "isAdmin": false,
+    "memberId": "member_u_1783389078405"
+  },
+  "640d83d4e1de51de701af669fae8f8e27f2f1b50f5aed99489bf1a5842ec672a": {
+    "id": "u_1783389535956",
+    "username": "newuser",
+    "nickname": "新用户",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=newuser",
+    "isAdmin": false,
+    "memberId": "member_u_1783389535956"
+  }
+}

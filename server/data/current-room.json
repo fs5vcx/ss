@@ -1,0 +1,38 @@
+{
+  "game": "dota2",
+  "teamCount": 4,
+  "teamSize": 5,
+  "matchType": "fun",
+  "matchName": "",
+  "status": "waiting",
+  "teams": [
+    {
+      "name": "火系",
+      "captain": null,
+      "players": []
+    },
+    {
+      "name": "水系",
+      "captain": null,
+      "players": []
+    },
+    {
+      "name": "草系",
+      "captain": null,
+      "players": []
+    },
+    {
+      "name": "电系",
+      "captain": null,
+      "players": []
+    }
+  ],
+  "pool": [
+    "member_u_1783389078405"
+  ],
+  "checkin": [
+    "member_u_1783389078405"
+  ],
+  "pickOrder": [],
+  "currentPick": 0
+}

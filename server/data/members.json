@@ -1,0 +1,176 @@
+[
+  {
+    "id": "m1",
+    "name": "林仔",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=linzai",
+    "available": true,
+    "game": "dota2",
+    "role": "",
+    "rank": ""
+  },
+  {
+    "id": "m2",
+    "name": "老鸡",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=laoji",
+    "available": true,
+    "game": "dota2",
+    "role": "",
+    "rank": ""
+  },
+  {
+    "id": "m3",
+    "name": "蛋饼",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=danbing",
+    "available": true,
+    "game": "dota2",
+    "role": "",
+    "rank": ""
+  },
+  {
+    "id": "m4",
+    "name": "小刘",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=xiaoliu",
+    "available": true,
+    "game": "dota2",
+    "role": "",
+    "rank": ""
+  },
+  {
+    "id": "m5",
+    "name": "大狗",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=dagou",
+    "available": true,
+    "game": "dota2",
+    "role": "",
+    "rank": ""
+  },
+  {
+    "id": "m6",
+    "name": "ZSMJ",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=zsmj",
+    "available": true,
+    "game": "dota2",
+    "role": "",
+    "rank": ""
+  },
+  {
+    "id": "m7",
+    "name": "核桃",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=hetao",
+    "available": true,
+    "game": "dota2",
+    "role": "",
+    "rank": ""
+  },
+  {
+    "id": "m8",
+    "name": "雕哥",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=diaoge",
+    "available": true,
+    "game": "dota2",
+    "role": "",
+    "rank": ""
+  },
+  {
+    "id": "m9",
+    "name": "大木老师",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=damu",
+    "available": true,
+    "game": "dota2",
+    "role": "",
+    "rank": ""
+  },
+  {
+    "id": "m10",
+    "name": "枫哥",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=fengge",
+    "available": true,
+    "game": "dota2",
+    "role": "",
+    "rank": ""
+  },
+  {
+    "id": "m11",
+    "name": "宝哥",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=baoge",
+    "available": true,
+    "game": "dota2",
+    "role": "",
+    "rank": ""
+  },
+  {
+    "id": "m12",
+    "name": "谢彬",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=xiebin",
+    "available": true,
+    "game": "dota2",
+    "role": "",
+    "rank": ""
+  },
+  {
+    "id": "m13",
+    "name": "Sylar",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=sylar",
+    "available": true,
+    "game": "dota2",
+    "role": "",
+    "rank": ""
+  },
+  {
+    "id": "m14",
+    "name": "哈哈明",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=hahaming",
+    "available": true,
+    "game": "dota2",
+    "role": "",
+    "rank": ""
+  },
+  {
+    "id": "m15",
+    "name": "AXX",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=axx",
+    "available": true,
+    "game": "dota2",
+    "role": "",
+    "rank": ""
+  },
+  {
+    "id": "m16",
+    "name": "霸气",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=baqi",
+    "available": true,
+    "game": "dota2",
+    "role": "",
+    "rank": ""
+  },
+  {
+    "id": "member_u_1783389078405",
+    "name": "测试用户",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=testuser",
+    "userId": "u_1783389078405",
+    "available": true,
+    "game": "dota2",
+    "role": "",
+    "rank": ""
+  },
+  {
+    "id": "member_u_1783389119604",
+    "name": "管理员",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=admin",
+    "userId": "u_1783389119604",
+    "available": true,
+    "game": "dota2",
+    "role": "",
+    "rank": ""
+  },
+  {
+    "id": "member_u_1783389535956",
+    "name": "新用户",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=newuser",
+    "userId": "u_1783389535956",
+    "available": true,
+    "game": "dota2",
+    "role": "",
+    "rank": ""
+  }
+]

@@ -1,108 +1,105 @@
 class WebSocketClient {
   constructor() {
-    this.ws = null;
-    this.listeners = new Map();
-    this.reconnectAttempts = 0;
-    this.maxReconnectAttempts = 5;
-    this.reconnectDelay = 1000;
+    this.ws = null
+    this.listeners = {}
+    this.url = null
+    this.reconnectTimer = null
+    this.manualClose = false
   }
 
-  connect() {
-    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    const host = window.location.hostname;
-    const port = window.location.port;
-    const wsUrl = `${protocol}//${host}:${port || (window.location.protocol === 'https:' ? '' : '3000')}`;
-    
-    this.ws = new WebSocket(wsUrl);
-
-    this.ws.onopen = () => {
-      console.log('WebSocket connected');
-      this.reconnectAttempts = 0;
-      this.emit('connected');
-    };
-
-    this.ws.onmessage = (event) => {
-      try {
-        const data = JSON.parse(event.data);
-        this.emit(data.type, data);
-      } catch (e) {
-        console.error('Failed to parse WebSocket message:', e);
-      }
-    };
-
-    this.ws.onclose = () => {
-      console.log('WebSocket disconnected');
-      this.emit('disconnected');
-      this.tryReconnect();
-    };
-
-    this.ws.onerror = (error) => {
-      console.error('WebSocket error:', error);
-      this.emit('error', error);
-    };
-  }
-
-  tryReconnect() {
-    if (this.reconnectAttempts >= this.maxReconnectAttempts) {
-      console.log('Max reconnect attempts reached');
-      return;
+  connect(url) {
+    if (this.ws) {
+      this.close()
     }
+    
+    this.url = url || (window.location.protocol === 'https:' ? 'wss:' : 'ws:') + '//' + window.location.host
+    this.manualClose = false
+    this._connect()
+  }
 
-    this.reconnectAttempts++;
-    const delay = this.reconnectDelay * Math.pow(2, this.reconnectAttempts - 1);
-    
-    console.log(`Reconnecting in ${delay}ms (attempt ${this.reconnectAttempts}/${this.maxReconnectAttempts})`);
-    
-    setTimeout(() => {
-      this.connect();
-    }, delay);
+  _connect() {
+    try {
+      this.ws = new WebSocket(this.url)
+      
+      this.ws.onopen = () => {
+        console.log('WebSocket connected')
+        this._emit('connected')
+      }
+      
+      this.ws.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data)
+          this._emit(data.type, data)
+        } catch (e) {
+          console.error('Parse message error:', e)
+        }
+      }
+      
+      this.ws.onclose = () => {
+        console.log('WebSocket disconnected')
+        this._emit('disconnected')
+        if (!this.manualClose) {
+          this._scheduleReconnect()
+        }
+      }
+      
+      this.ws.onerror = (error) => {
+        console.error('WebSocket error:', error)
+        this._emit('error', error)
+      }
+    } catch (e) {
+      console.error('WebSocket connect error:', e)
+      this._scheduleReconnect()
+    }
+  }
+
+  _scheduleReconnect() {
+    if (this.reconnectTimer) return
+    this.reconnectTimer = setTimeout(() => {
+      this.reconnectTimer = null
+      if (!this.manualClose) {
+        this._connect()
+      }
+    }, 3000)
   }
 
   send(type, data = {}) {
     if (this.ws && this.ws.readyState === WebSocket.OPEN) {
-      this.ws.send(JSON.stringify({ type, ...data }));
-      return true;
+      this.ws.send(JSON.stringify({ type, ...data }))
     }
-    return false;
   }
 
   on(event, callback) {
-    if (!this.listeners.has(event)) {
-      this.listeners.set(event, new Set());
+    if (!this.listeners[event]) {
+      this.listeners[event] = []
     }
-    this.listeners.get(event).add(callback);
-    return () => this.off(event, callback);
+    this.listeners[event].push(callback)
+    
+    return () => {
+      const index = this.listeners[event].indexOf(callback)
+      if (index > -1) {
+        this.listeners[event].splice(index, 1)
+      }
+    }
   }
 
-  off(event, callback) {
-    if (this.listeners.has(event)) {
-      this.listeners.get(event).delete(callback);
-    }
-  }
-
-  emit(event, data) {
-    if (this.listeners.has(event)) {
-      this.listeners.get(event).forEach(callback => {
-        try {
-          callback(data);
-        } catch (e) {
-          console.error(`Error in WebSocket listener for ${event}:`, e);
-        }
-      });
+  _emit(event, data) {
+    if (this.listeners[event]) {
+      this.listeners[event].forEach(cb => cb(data))
     }
   }
 
   close() {
-    if (this.ws) {
-      this.ws.close();
-      this.ws = null;
+    this.manualClose = true
+    if (this.reconnectTimer) {
+      clearTimeout(this.reconnectTimer)
+      this.reconnectTimer = null
     }
-  }
-
-  isConnected() {
-    return this.ws && this.ws.readyState === WebSocket.OPEN;
+    if (this.ws) {
+      this.ws.close()
+      this.ws = null
+    }
   }
 }
 
-export const wsClient = new WebSocketClient();
-export default wsClient;
+export default new WebSocketClient()

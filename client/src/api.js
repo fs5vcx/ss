@@ -1,53 +1,85 @@
-const API_BASE = '/api/files';
+import axios from 'axios'
 
-export async function getFileList() {
-  const res = await fetch(API_BASE);
-  return res.json();
+const API_BASE = import.meta.env.VITE_API_BASE || '/api'
+
+const api = axios.create({
+  baseURL: API_BASE,
+  withCredentials: true
+})
+
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token')
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`
+  }
+  return config
+})
+
+api.interceptors.response.use(
+  (response) => response.data,
+  (error) => {
+    if (error.response?.status === 401) {
+      localStorage.removeItem('token')
+      localStorage.removeItem('user')
+    }
+    return Promise.reject(error)
+  }
+)
+
+export function register(username, password, nickname) {
+  return api.post('/auth/register', { username, password, nickname })
 }
 
-export async function uploadFile(file, onProgress) {
-  return new Promise((resolve, reject) => {
-    const formData = new FormData();
-    formData.append('file', file);
-
-    const xhr = new XMLHttpRequest();
-
-    xhr.upload.addEventListener('progress', (e) => {
-      if (e.lengthComputable && onProgress) {
-        const percent = Math.round((e.loaded / e.total) * 100);
-        onProgress(percent);
-      }
-    });
-
-    xhr.addEventListener('load', () => {
-      if (xhr.status >= 200 && xhr.status < 300) {
-        resolve(JSON.parse(xhr.responseText));
-      } else {
-        reject(new Error('Upload failed'));
-      }
-    });
-
-    xhr.addEventListener('error', () => {
-      reject(new Error('Upload error'));
-    });
-
-    xhr.open('POST', `${API_BASE}/upload`);
-    xhr.send(formData);
-  });
+export function login(username, password) {
+  return api.post('/auth/login', { username, password })
 }
 
-export async function deleteFile(fileName) {
-  const res = await fetch(`${API_BASE}/${encodeURIComponent(fileName)}`, {
-    method: 'DELETE'
-  });
-  return res.json();
+export function logout() {
+  return api.post('/auth/logout')
 }
 
-export function getDownloadUrl(fileName) {
-  return `${API_BASE}/download/${encodeURIComponent(fileName)}`;
+export function getMe() {
+  return api.get('/auth/me')
 }
 
-export async function getStats() {
-  const res = await fetch(`${API_BASE}/stats`);
-  return res.json();
+export function getRoom() {
+  return api.get('/room')
 }
+
+export function checkin() {
+  return api.post('/room/checkin')
+}
+
+export function checkout() {
+  return api.post('/room/checkout')
+}
+
+export function getMembers() {
+  return api.get('/admin/members')
+}
+
+export function addMember(data) {
+  return api.post('/admin/members', data)
+}
+
+export function startRoom(data) {
+  return api.post('/admin/room/start', data)
+}
+
+export function resetRoom() {
+  return api.post('/admin/room/reset')
+}
+
+export function pickPlayer(teamIndex, memberId, isCaptain = false) {
+  return api.post('/admin/room/pick', { teamIndex, memberId, isCaptain })
+}
+
+export function setCaptain(teamIndex, memberId) {
+  return api.post('/admin/room/set-captain', { teamIndex, memberId })
+}
+
+export function startPick() {
+  return api.post('/admin/room/start-pick')
+}
+
+export default api
